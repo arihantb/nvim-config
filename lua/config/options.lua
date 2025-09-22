@@ -1,5 +1,5 @@
 -- make line numbers default
-vim.o.number = true
+vim.o.nu = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.showmode = false

@@ -2,7 +2,8 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1000, -- very high number ensures it loads before other plugins
+		-- very high number ensures it loads before other plugins
+		priority = 1000,
 		opts = {
 			integrations = {
 				hop = true,
@@ -69,7 +70,7 @@ return {
 	{
 		"bluz71/vim-moonfly-colors",
 		name = "moonfly",
-		lazy = false,
 		priority = 1000,
+		opts = {},
 	},
 }
