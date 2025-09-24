@@ -198,7 +198,7 @@ return {
 			},
 			-- pick color schemes (non-persistent) --
 			{
-				"<leader>th",
+				"<leader>cs",
 				function()
 					require("snacks").picker.colorschemes({ layout = "ivy" })
 				end,

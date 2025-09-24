@@ -1,4 +1,3 @@
--- make line numbers default
 vim.o.nu = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -38,6 +37,5 @@ vim.o.colorcolumn = "120"
 
 vim.o.hlsearch = true
 
--- enable mouse mode
 vim.o.mouse = "a"
 vim.g.editorconfig = true

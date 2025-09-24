@@ -161,17 +161,6 @@ return {
 		opts = {},
 	},
 
-	-- animations
-	{
-		"nvim-mini/mini.animate",
-		version = false,
-		opts = {
-			cursor = {
-				enable = false,
-			},
-		},
-	},
-
 	-- highlight cursor word
 	{
 		"nvim-mini/mini.cursorword",

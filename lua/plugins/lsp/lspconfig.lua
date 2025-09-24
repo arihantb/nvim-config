@@ -2,7 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
@@ -66,13 +65,6 @@ return {
 			virtual_text = true,
 			underline = true,
 			update_in_insert = false,
-		})
-
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local capabilities = cmp_nvim_lsp.default_capabilities()
-
-		vim.lsp.config("*", {
-			capabilities = capabilities,
 		})
 
 		vim.lsp.config("lua_ls", {
