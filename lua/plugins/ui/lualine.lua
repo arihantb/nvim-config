@@ -1,6 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	event = "BufReadPre",
 	config = function()
 		local lualine = require("lualine")
 		local constants = require("config.constants")
@@ -69,7 +70,7 @@ return {
 				end,
 				padding = 0,
 				separator = "",
-				color = { bg = theme.normal.a.fg },
+				color = { bg = theme.replace.a.fg },
 			}
 		end
 
@@ -79,7 +80,7 @@ return {
 				local visual_chars = wc.visual_chars
 
 				if visual_chars then
-					return string.format("󰈭  %s", visual_chars)
+					return string.format("󰈭  %s ", visual_chars)
 				else
 					return ""
 				end
@@ -94,10 +95,10 @@ return {
 			sources = { "nvim_diagnostic" },
 			sections = { "error", "warn", "info", "hint" },
 			diagnostics_color = {
-				error = { fg = "#BF3100", bg = theme.normal.b.bg },
-				warn = { fg = "#C3B11A", bg = theme.normal.b.bg },
-				info = { fg = "#689AFD", bg = theme.normal.b.bg },
-				hint = { fg = "79C0FF", bg = theme.normal.b.bg },
+				error = { fg = "#BF3100", bg = theme.replace.a.fg },
+				warn = { fg = "#C3B11A", bg = theme.replace.a.fg },
+				info = { fg = "#689AFD", bg = theme.replace.a.fg },
+				hint = { fg = "79C0FF", bg = theme.replace.a.fg },
 			},
 			symbols = {
 				error = constants.symbolMap.ERROR .. " ",
@@ -112,7 +113,6 @@ return {
 
 		local aerial = {
 			"aerial",
-			sep = " > ",
 			depth = nil,
 			dense = true,
 			dense_sep = ".",
@@ -123,14 +123,6 @@ return {
 		local mode = function()
 			local mode_code = vim.api.nvim_get_mode().mode
 			return "  " .. constants.modeMap[mode_code] or mode_code
-		end
-
-		local paste = function()
-			if vim.o.paste then
-				return constants.symbolMap.PASTE
-			else
-				return ""
-			end
 		end
 
 		local filename = {
@@ -154,25 +146,26 @@ return {
 				modified = constants.symbolMap.MODIFIED_2 .. " ",
 				removed = constants.symbolMap.DELETED_2 .. " ",
 			},
-			color = { bg = theme.normal.a.fg },
+			color = { bg = theme.replace.a.fg },
 		}
 
 		lualine.setup({
-			icons_enabled = true,
-			-- component_separators = { left = "", right = "" },
-			component_separators = { left = "│", right = "│" },
-			section_separators = { left = "", right = "" },
-			disabled_filetypes = {
-				statusline = { "alpha" },
-				winbar = { "alpha", "aerial", "neo-tree", "nerdtree", "NvimTree" },
+			options = {
+				icons_enabled = true,
+				component_separators = "",
+				section_separators = "",
+				disabled_filetypes = {
+					statusline = { "alpha" },
+					winbar = { "alpha", "aerial", "neo-tree", "nerdtree", "NvimTree" },
+				},
+				globalstatus = true,
+				refresh = { statusline = 5000, tabline = 0, winbar = 500 },
 			},
-			ignore_focus = {},
-			always_divide_middle = true,
-			globalstatus = true,
-			refresh = { statusline = 5000, tabline = 0, winbar = 500 },
 			sections = {
 				lualine_a = { mode },
-				lualine_b = { { "branch", icon = constants.symbolMap.BRANCH .. " " } },
+				lualine_b = {
+					{ "branch", icon = constants.symbolMap.BRANCH .. " ", color = { bg = theme.normal.b.bg } },
+				},
 				lualine_c = { diff, filename },
 				lualine_x = {
 					wordCount,
@@ -180,7 +173,7 @@ return {
 					{ "filesize", color = { fg = theme.normal.a.bg } },
 				},
 				lualine_y = { "filetype" },
-				lualine_z = { "encoding", mixLine, paste },
+				lualine_z = { "encoding", mixLine },
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -191,6 +184,21 @@ return {
 				lualine_z = {},
 			},
 			winbar = {
+				lualine_a = { diagnostics },
+				lualine_b = {},
+				lualine_c = { aerial },
+				lualine_x = {
+					{
+						function()
+							return " "
+						end,
+						padding = 0,
+					},
+				},
+				lualine_y = {},
+				lualine_z = {},
+			},
+			inactive_winbar = {
 				lualine_a = { diagnostics },
 				lualine_b = {},
 				lualine_c = { aerial },

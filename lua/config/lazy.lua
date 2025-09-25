@@ -25,6 +25,7 @@ require("lazy").setup({
 		{ import = "plugins.search" },
 		{ import = "plugins.treesitter" },
 		{ import = "plugins.ui" },
+		{ import = "plugins.utility" },
 	},
 	install = {
 		colorscheme = { "catppuccin" },

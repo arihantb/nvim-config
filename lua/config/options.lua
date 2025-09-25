@@ -24,6 +24,7 @@ vim.o.background = "dark"
 vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
+vim.opt.fillchars = { eob = " " }
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.isfname:append("@-@")

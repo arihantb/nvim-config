@@ -1,14 +1,17 @@
 return {
 	"rainbowhxch/beacon.nvim",
-	opts = {
-		size = 999,
-		fader = "cursor_line",
-		minimal_jump = 6,
-		timeout = 3000,
-		ignore_buffers = {},
-	},
+	event = { "BufReadPre" },
+	config = function()
+		local beacon = require("beacon")
+		beacon.setup({
+			size = 999,
+			fader = "cursor_line",
+			minimal_jump = 6,
+			ignore_buffers = {},
+		})
+	end,
 	keys = {
-		{ "<leader>bb", "<CMD>Beacon<CR>", desc = "Highlight Cursor" },
+		{ "<leader>bB", "<CMD>Beacon<CR>", desc = "Highlight Cursor" },
 		{ "<leader>bt", "<CMD>BeaconToggle<CR>", desc = "Toggle Beacon" },
 	},
 }

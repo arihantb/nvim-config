@@ -1,18 +1,5 @@
 return {
 	"stevearc/aerial.nvim",
-	highlights = {
-		AerialLine = { bg = "#3E1A00" },
-		AerialFunction = { fg = "#589CFF" },
-		AerialFunctionIcon = { fg = "#589CFF" },
-		AerialObject = { fg = "#8DDA00" },
-		AerialObjectIcon = { fg = "#8DDA00" },
-		AerialArray = { fg = "#1C9A7B" },
-		AerialArrayIcon = { fg = "#1C9A7B" },
-		AerialVariable = { fg = "#B0B51D" },
-		AerialVariableIcon = { fg = "#B0B51D" },
-		AerialConstant = { fg = "#F46400" },
-		AerialConstantIcon = { fg = "#F46400" },
-	},
 	opts = {
 		backends = {
 			["_"] = { "lsp", "treesitter", "markdown" },
@@ -53,6 +40,7 @@ return {
 				"Number",
 				"Object",
 				"Operator",
+				"Package",
 				"Property",
 				"String",
 				"Struct",
@@ -64,4 +52,19 @@ return {
 			buftypes = false,
 		},
 	},
+	config = function(_, opts)
+		local constants = require("config.constants")
+		local aerial = require("aerial")
+
+		local icons = {}
+		local Collapsed = constants.kindSymbolMap.Collapsed
+
+		for key, val in pairs(constants.kindSymbolMap) do
+			icons[key] = val
+			icons[key .. "Collapsed"] = string.format("%s %s", Collapsed, val)
+		end
+
+		opts.icons = icons
+		aerial.setup(opts)
+	end,
 }

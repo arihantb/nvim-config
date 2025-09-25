@@ -20,6 +20,6 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>gg", "<CMD>LazyGit<CR>", desc = "Show Lazy Git" },
+		{ "<leader>gG", "<CMD>LazyGit<CR>", desc = "Show Lazy Git" },
 	},
 }

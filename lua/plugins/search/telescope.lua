@@ -141,7 +141,7 @@ return {
 			mode = { "v" },
 			silent = true,
 		},
-		{ "<leader>tH", "<CMD>Telescope highlights<CR>", desc = "List Highlights", silent = true },
+		{ "<leader>tH", "<CMD>Telescope highlights<CR>", desc = "List Highlights" },
 		{
 			"<leader>tH",
 			function()
