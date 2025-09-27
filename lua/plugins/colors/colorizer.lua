@@ -1,6 +1,9 @@
 return {
 	"norcalli/nvim-colorizer.lua",
-	opts = {},
+	config = function()
+		local colorizer = require("colorizer")
+		colorizer.setup()
+	end,
 	keymaps = {
 		{ "<leader>cab", "<CMD>ColorizerAttachToBuffer<CR>", desc = "Colorizer Attach to Buffer" },
 		{ "<leader>cdb", "<CMD>ColorizerDetachFromBuffer<CR>", desc = "Colorizer Detach from Buffer" },

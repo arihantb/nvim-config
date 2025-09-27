@@ -4,7 +4,6 @@ return {
 		priority = 1000,
 		lazy = false,
 		opts = {
-			-- NOTE: docs @ https://github.com/folke/snacks.nvim/blob/main/docs --
 			quickfile = {
 				enabled = true,
 				exclude = { "latex" },
@@ -45,7 +44,7 @@ return {
 						},
 					},
 					telescope = {
-						reverse = true, -- set to false for search bar to be on top
+						reverse = true,
 						layout = {
 							box = "horizontal",
 							backdrop = false,
@@ -89,37 +88,6 @@ return {
 							},
 						},
 					},
-				},
-			},
-			dashboard = {
-				enabled = true,
-				sections = {
-					{ section = "header" },
-					{ section = "keys", gap = 1, padding = 1 },
-					{
-						pane = 2,
-						icon = " ",
-						title = "Recent Files",
-						section = "recent_files",
-						indent = 2,
-						padding = 1,
-					},
-					{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-					{
-						pane = 2,
-						icon = " ",
-						title = "Git Status",
-						section = "terminal",
-						enabled = function()
-							return Snacks.git.get_root() ~= nil
-						end,
-						cmd = "git status --short --branch --renames",
-						height = 5,
-						padding = 1,
-						ttl = 5 * 60,
-						indent = 3,
-					},
-					{ section = "startup" },
 				},
 			},
 		},

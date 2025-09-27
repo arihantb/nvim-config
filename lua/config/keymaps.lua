@@ -31,15 +31,6 @@ vim.keymap.set(
 	{ desc = "Replace Cursor Word (Global)" }
 )
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
-vim.keymap.set("n", "<leader>D", "<CMD>lua Snacks.dashboard()<CR>")
-
 vim.keymap.set("n", "<M-n>", "<cmd>tabnew<CR>", { desc = "Open New Tab" })
 vim.keymap.set("n", "<M-w>", "<cmd>tabclose<CR>", { desc = "Close Current Tab" })
 vim.keymap.set("n", "<M-l>", "<cmd>tabn<CR>", { desc = "Next Tab" })
@@ -53,13 +44,6 @@ vim.keymap.set("n", "<M-x>", "<cmd>close<CR>", { desc = "Close Current Split" })
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open Oil" })
 vim.keymap.set("n", "<leader>-", "<CMD>Oil --float<CR>", { desc = "Open Oil Floating" })
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "oil",
-	callback = function()
-		vim.opt_local.cursorline = true
-	end,
-})
 
 vim.keymap.set("n", "<leader>fp", function()
 	local filePath = vim.fn.expand("%:~")

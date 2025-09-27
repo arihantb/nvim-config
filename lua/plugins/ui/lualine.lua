@@ -1,7 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	event = "BufReadPre",
+	event = "VimEnter",
 	config = function()
 		local lualine = require("lualine")
 		local constants = require("config.constants")
@@ -50,7 +50,7 @@ return {
 			local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 			local total = vim.api.nvim_buf_line_count(0)
 
-			return string.format(" %s/%s %s", row, total, col)
+			return string.format(" %s/%s  %s", row, total, col)
 		end
 
 		local spaces = function()
@@ -95,10 +95,10 @@ return {
 			sources = { "nvim_diagnostic" },
 			sections = { "error", "warn", "info", "hint" },
 			diagnostics_color = {
-				error = { fg = "#BF3100", bg = theme.replace.a.fg },
-				warn = { fg = "#C3B11A", bg = theme.replace.a.fg },
-				info = { fg = "#689AFD", bg = theme.replace.a.fg },
-				hint = { fg = "79C0FF", bg = theme.replace.a.fg },
+				error = { fg = "#BF3100", bg = "" },
+				warn = { fg = "#C3B11A", bg = "" },
+				info = { fg = "#689AFD", bg = "" },
+				hint = { fg = "#79C0FF", bg = "" },
 			},
 			symbols = {
 				error = constants.symbolMap.ERROR .. " ",

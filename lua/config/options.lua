@@ -21,14 +21,19 @@ vim.o.smartcase = true
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.o.scrolloff = 8
+vim.o.scrolloff = 0
 vim.o.signcolumn = "yes"
+vim.o.showbreak = "↪ "
 
 vim.opt.fillchars = { eob = " " }
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.isfname:append("@-@")
 vim.opt.clipboard:append("unnamedplus")
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldlevelstart = 99
 
 vim.o.splitright = true
 vim.o.splitbelow = true

@@ -1,5 +1,6 @@
 return {
 	"stevearc/oil.nvim",
+	event = "VimEnter",
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	opts = {
 		default_file_explorer = true,
