@@ -5,7 +5,10 @@ return {
 		local neocodeium = require("neocodeium")
 		local neocodeiumCommands = require("neocodeium.commands")
 
-		neocodeium.setup()
+		neocodeium.setup({
+			show_label = false,
+			silent = true,
+		})
 
 		vim.keymap.set("n", "<leader>nC", function()
 			neocodeiumCommands.toggle()

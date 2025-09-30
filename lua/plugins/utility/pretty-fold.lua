@@ -1,5 +1,6 @@
 return {
 	"bbjornstad/pretty-fold.nvim",
+	event = "VeryLazy",
 	config = function()
 		require("pretty-fold").setup({
 			sections = {

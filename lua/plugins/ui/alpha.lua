@@ -214,6 +214,15 @@ return {
 			end,
 		})
 
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "AlphaReady",
+			callback = function()
+				if pcall(require, "mini.map") then
+					require("mini.map").close()
+				end
+			end,
+		})
+
 		vim.api.nvim_create_autocmd("BufUnload", {
 			group = group,
 			pattern = "<buffer>",

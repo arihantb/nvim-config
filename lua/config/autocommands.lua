@@ -77,16 +77,16 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 			MatchWordCur = { fg = get_hl("Normal"), bg = get_hl("@keyword", true) },
 			Scope = "@function",
 			TreesitterContext = {
-				bg = get_hl("NormalFloat"),
 				italic = true,
 			},
 			TreesitterContextLineNumber = {
-				bg = get_hl("NormalFloat"),
 				italic = true,
 				bold = true,
 			},
 			TreesitterContextBottom = {},
-			TreesitterContextSeparator = {},
+			TreesitterContextSeparator = {
+				bg = get_hl("NormalFloat"),
+			},
 		}
 
 		for group1, group2 in pairs(highlights) do
@@ -137,6 +137,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "AlphaTime", { fg = "#bb9af7" })
 
 		vim.api.nvim_set_hl(0, "Folded", { link = "Comment" })
+		vim.api.nvim_set_hl(0, "FoldColumn", { link = "NormalNC" })
 	end,
 })
 
@@ -162,5 +163,42 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		if pcall(require, "mini.map") then
+			local mini_map = require("mini.map")
+
+			mini_map.setup({
+				symbols = {
+					encode = mini_map.gen_encode_symbols.dot("4x2"),
+					scroll_line = "┃",
+					scroll_view = "│",
+				},
+				window = {
+					focusable = true,
+					winblend = 75,
+					zindex = 50,
+					show_integration_count = false,
+				},
+				integrations = {
+					mini_map.gen_integration.diagnostic({
+						error = "DiagnosticFloatingError",
+						warn = "DiagnosticFloatingWarn",
+						info = "DiagnosticFloatingInfo",
+						hint = "DiagnosticFloatingHint",
+					}),
+					mini_map.gen_integration.gitsigns(),
+				},
+			})
+
+			if vim.bo.filetype == "oil" then
+				mini_map.close()
+			else
+				mini_map.open()
+			end
+		end
 	end,
 })

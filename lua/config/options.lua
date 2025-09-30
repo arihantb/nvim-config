@@ -31,6 +31,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.isfname:append("@-@")
 vim.opt.clipboard:append("unnamedplus")
 
+vim.o.foldcolumn = "1"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99

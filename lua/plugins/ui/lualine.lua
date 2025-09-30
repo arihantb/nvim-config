@@ -38,39 +38,31 @@ return {
 			end
 		end
 
-		local bufferNumber = function()
-			return " " .. vim.api.nvim_get_current_buf()
-		end
-
-		local winNumber = function()
-			return " " .. vim.api.nvim_get_current_win()
-		end
-
 		local location = function()
 			local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 			local total = vim.api.nvim_buf_line_count(0)
 
-			return string.format(" %s/%s  %s", row, total, col)
+			return string.format("%s/%s:%s", row, total, col)
 		end
 
-		local spaces = function()
-			return string.format("󰌒 %s 󱁐 %s", vim.o.tabstop, vim.o.shiftwidth)
-		end
-
-		local custom_section = function(funcs)
+		local custom_lualine = function(funcs, color)
 			return {
 				function()
-					local str = ""
+					local results = {}
 
 					for _, func in pairs(funcs) do
-						str = str .. " " .. func()
+						local new_str = func()
+
+						if new_str and new_str ~= "" then
+							table.insert(results, new_str)
+						end
 					end
 
-					return str .. " "
+					return " " .. table.concat(results, " │ ") .. " "
 				end,
 				padding = 0,
 				separator = "",
-				color = { bg = theme.replace.a.fg },
+				color = color,
 			}
 		end
 
@@ -132,7 +124,7 @@ return {
 			path = 0,
 			shorting_target = 40,
 			symbols = {
-				modified = constants.symbolMap.MODIFIED_2,
+				modified = constants.symbolMap.MODIFIED_2 .. " ",
 				readonly = constants.symbolMap.DELETED_2 .. " " .. constants.symbolMap.LOCK,
 				unnamed = "[No Name]",
 				newfile = "[New]",
@@ -148,6 +140,20 @@ return {
 			},
 			color = { bg = theme.replace.a.fg },
 		}
+
+		local fileformat = function()
+			local symbols = {
+				unix = "LF",
+				dos = "CRLF",
+				mac = "CR",
+			}
+
+			return symbols[vim.o.fileformat]
+		end
+
+		local encoding = function()
+			return vim.o.encoding
+		end
 
 		lualine.setup({
 			options = {
@@ -169,11 +175,20 @@ return {
 				lualine_c = { diff, filename },
 				lualine_x = {
 					wordCount,
-					custom_section({ progress, location, spaces, bufferNumber, winNumber }),
+					custom_lualine(
+						{ require("recorder").recordingStatus, progress, location },
+						{ bg = theme.replace.a.fg }
+					),
 					{ "filesize", color = { fg = theme.normal.a.bg } },
 				},
 				lualine_y = { "filetype" },
-				lualine_z = { "encoding", mixLine },
+				lualine_z = {
+					custom_lualine({
+						fileformat,
+						encoding,
+						mixLine,
+					}, {}),
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},

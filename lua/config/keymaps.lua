@@ -4,9 +4,6 @@ vim.g.maplocalleader = " "
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Lines Up", silent = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Lines Down", silent = true })
 
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move Up in Buffer with Centered Cursor" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move Down in Buffer with Centered Cursor" })
-
 vim.keymap.set("n", "n", "nzzzv", { desc = "Center Cursor Next Find" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Center Cursor Prev Find" })
 
