@@ -174,8 +174,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			mini_map.setup({
 				symbols = {
 					encode = mini_map.gen_encode_symbols.dot("4x2"),
-					scroll_line = "┃",
-					scroll_view = "│",
+					scroll_line = "",
+					scroll_view = "",
 				},
 				window = {
 					focusable = true,

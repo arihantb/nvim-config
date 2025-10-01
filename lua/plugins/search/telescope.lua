@@ -49,7 +49,7 @@ return {
 	end,
 	keys = {
 		{
-			"<leader>tg",
+			"<leader>tG",
 			function()
 				local telescope_builtin = require("telescope.builtin")
 				local word = vim.fn.expand("<cWORD>")
@@ -57,7 +57,7 @@ return {
 			end,
 			desc = "Find Connected Words Under Cursor",
 		},
-		{ "<leader>ths", "<CMD>Telescope themes<CR>", desc = "Theme Switcher", noremap = true, silent = true },
+		{ "<leader>tt", "<CMD>Telescope themes<CR>", desc = "Theme Switcher", noremap = true, silent = true },
 		{
 			"<leader>tp",
 			function()
@@ -66,8 +66,18 @@ return {
 			end,
 			desc = "Find Pickers",
 		},
+		{
+			"<leader>tc",
+			function()
+				local telescope_builtin = require("telescope.builtin")
+				local config_path = vim.fn.stdpath("config")
+				telescope_builtin.find_files({ cwd = config_path })
+			end,
+			desc = "Find Config Files",
+			silent = true,
+		},
 		{ "<leader>tf", "<CMD>Telescope find_files<CR>", desc = "Find Files" },
-		{ "<leader>tm", "<CMD>Telescope message<CR>", desc = "Find Message" },
+		{ "<leader>tm", "<CMD>Telescope message<CR>", desc = "List Messages" },
 		{
 			"<leader>tv",
 			function()
@@ -79,7 +89,7 @@ return {
 			silent = true,
 		},
 		{
-			"<leader>tb",
+			"<leader>tg",
 			"<CMD>Telescope current_buffer_fuzzy_find<CR>",
 			desc = "Find Content In Current Buffer",
 			silent = true,
@@ -106,7 +116,8 @@ return {
 			mode = { "v" },
 			silent = true,
 		},
-		{ "<leader>tc", "<CMD>Telescope cmdline<CR>", desc = "List Commands", silent = true },
+		{ "<leader>tc", "<CMD>Telescope commands<CR>", desc = "List Commands", silent = true },
+		{ "<leader>tv", "<CMD>Telescope vim_options<CR>", desc = "List Vim Options", silent = true },
 		{
 			"<leader>tc",
 			function()

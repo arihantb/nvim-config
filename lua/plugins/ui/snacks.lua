@@ -97,72 +97,21 @@ return {
 			function()
 				require("snacks").lazygit()
 			end,
+			desc = "Open LazyGit",
 		},
 		{
-			"<leader>gl",
-			function()
-				require("snacks").lazygit.log()
-			end,
-		},
-		{
-			"<leader>rN",
+			"<leader>rn",
 			function()
 				require("snacks").rename.rename_file()
 			end,
+			desc = "Rename File",
 		},
 		{
 			"<leader>dB",
 			function()
 				require("snacks").bufdelete()
 			end,
-		},
-		{
-			"<leader>pf",
-			function()
-				require("snacks").picker.files()
-			end,
-		},
-		{
-			"<leader>pc",
-			function()
-				require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
-			end,
-		},
-		{
-			"<leader>ps",
-			function()
-				require("snacks").picker.grep()
-			end,
-		},
-		{
-			"<leader>pws",
-			function()
-				require("snacks").picke.rgrep_word()
-			end,
-		},
-		{
-			"<leader>pk",
-			function()
-				require("snacks").picker.keymaps({ layout = "ivy" })
-			end,
-		},
-		{
-			"<leader>gbr",
-			function()
-				require("snacks").picker.git_branches({ layout = "select" })
-			end,
-		},
-		{
-			"<leader>cs",
-			function()
-				require("snacks").picker.colorschemes({ layout = "ivy" })
-			end,
-		},
-		{
-			"<leader>vh",
-			function()
-				require("snacks").picker.help()
-			end,
+			desc = "Delete Buffer",
 		},
 	},
 }

@@ -26,24 +26,21 @@ return {
 				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
 				opts.desc = "See Available Code Actions"
-				vim.keymap.set({ "n", "v" }, "<leader>vca", function()
+				vim.keymap.set({ "n", "v" }, "<leader>vc", function()
 					vim.lsp.buf.code_action()
 				end, opts)
 
-				opts.desc = "Smart Rename"
-				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-
 				opts.desc = "Show Buffer Diagnostics"
-				vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+				vim.keymap.set("n", "<leader>dD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
 				opts.desc = "Show Line Diagnostics"
-				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+				vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts)
 
 				opts.desc = "Show Documentation for Under Cursor"
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
 				opts.desc = "Restart LSP"
-				vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+				vim.keymap.set("n", "<leader>rl", ":LspRestart<CR>", opts)
 
 				vim.keymap.set("i", "<C-h>", function()
 					vim.lsp.buf.signature_help()

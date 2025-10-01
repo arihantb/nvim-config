@@ -15,20 +15,16 @@ return {
 			},
 		})
 
-		-- keymaps for harpoon
-		-- adds the file to the harpoon
-		vim.keymap.set("n", "<leader>a", function()
+		vim.keymap.set("n", "<leader>ha", function()
 			harpoon:list():add()
 		end, { desc = "Harpoon Add File" })
-		vim.keymap.set("n", "<leader>d", function()
+		vim.keymap.set("n", "<leader>hr", function()
 			harpoon:list():remove()
-		end, { desc = "Harpoon Delete File" })
-		-- show quick menu of files list in harpoon
+		end, { desc = "Harpoon Remove File" })
 		vim.keymap.set("n", "<C-e>", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end, { desc = "Harpoon Show Files" })
 
-		-- harpoon marked files
 		vim.keymap.set("n", "<C-y>", function()
 			harpoon:list():select(1)
 		end, { desc = "Harpoon Select File (1)" })
@@ -42,7 +38,6 @@ return {
 			harpoon:list():select(4)
 		end, { desc = "Harpoon Select File (4)" })
 
-		-- toggle buffers
 		vim.keymap.set("n", "<C-S-P>", function()
 			harpoon:list():prev()
 		end, { desc = "Harpoon Previous Buffer" })

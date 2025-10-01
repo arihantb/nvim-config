@@ -24,6 +24,7 @@ return {
 					vim.cmd("BookmarkMoveToLine " .. input)
 				end)
 			end,
+			desc = "Move Bookmark to Line",
 		},
 	},
 }

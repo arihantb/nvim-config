@@ -8,7 +8,6 @@ return {
 			"icon",
 		},
 		keymaps = {
-			["<M-h>"] = "actions.select_split",
 			["q"] = "actions.close",
 		},
 		delete_to_trash = true,
